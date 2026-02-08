@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: task1_mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: task1_db
+      MYSQL_USER: task1_user
+      MYSQL_PASSWORD: task1_password
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - techpulse_network
+
+networks:
+  techpulse_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
